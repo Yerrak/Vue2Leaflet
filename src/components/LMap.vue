@@ -112,9 +112,8 @@ export default {
           this.center.lat = center.lat;
           this.center.lng = center.lng;
         }
-      } else {
-        this.$emit('update:center', center);
       }
+      this.$emit('update:center', center);
 
       let bounds = this.mapObject.getBounds();
       if (this.bounds != null) {
@@ -136,9 +135,9 @@ export default {
           this.bounds._northEast.lat = bounds._northEast.lat;
           this.bounds._northEast.lng = bounds._northEast.lng;
         }
-      } else {
-        this.$emit('update:bounds', bounds);
       }
+      // bounds always change after move
+      this.$emit('update:bounds', bounds);
     });
     L.DomEvent.on(this.mapObject, this.$listeners);
     propsBinder(this, this.mapObject, props);
